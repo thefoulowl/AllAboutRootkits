@@ -22,3 +22,20 @@ rootkit's process.
 
 `[List of processes - rootkit process]`
 
+### Where hooks live
+
+* Shared libraries
+* In-process memory
+* Loader mechanisms
+
+### Why is it basic
+
+* No kernel access needed
+* Easier to implement
+* Easier to detect
+
+### Defender View
+
+* Compare program output vs raw syscalls
+* Look for unexpected library loads
+* Static + runtime integrity checks

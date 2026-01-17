@@ -17,9 +17,9 @@ So how do user programs do anything useful? Right?
 
 They ask the kernel to do it for 'em.
 
-### That request boundary is called a system call, it will later be 
-### discussed cleanly. When a program asks "open this file", the kernel 
-### answers by:
+That request boundary is called a system call, it will later be discussed cleanly.
+
+### When a program asks "open this file", the kernel answers by:
 
 * Looking at internal kernel data
 * Performing operations

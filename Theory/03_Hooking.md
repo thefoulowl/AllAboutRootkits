@@ -103,7 +103,7 @@ This is how `LD_PRELOAD` works.
 | Inline hooking | Both   | High        | High    | Low–Medium |
 ```
 
-#### Rootkits are just pointer redirection, control-flow hijacking, 
-#### and trust boundary abuse. Every hook is just "change where 
-#### execution goes"
+Rootkits are just pointer redirection, control-flow hijacking, and 
+trust boundary abuse. 
+Every hook is just "change where execution goes"
 

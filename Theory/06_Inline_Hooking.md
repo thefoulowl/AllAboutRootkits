@@ -34,3 +34,9 @@ function:
 * Instruction size matters
 * CPU architecture matters
 * Updates break it
+
+### Defender View:
+
+* Function prologue integrity checks
+* Code section hashing
+* Detect unexpected jumps

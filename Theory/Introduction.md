@@ -3,7 +3,7 @@
 A modern operating system is not a single program, it is a layered 
 contract system.
 
-At the bottom is hardware. The CPU does not know what a "process" of 
+At the bottom is hardware. The CPU does not know what a "process" or 
 "file" is. It only knows instructions, memory, registers, and 
 privilege rings.
 

@@ -25,3 +25,23 @@ process is known as hooking.
 Every hooking technique you will ever see reduces to one of these.
 
 Inline hooks: rewriting reality
+
+When a function is called, execution jumps to its first instruction.
+
+An inline hook overwrites those first instructions with a jump:
+
+```
+original_function:
+    push rbp
+    mov rbp, rsp
+    ...
+```
+
+Becomes 
+
+```
+original_function:
+    jmp my_code
+```
+
+

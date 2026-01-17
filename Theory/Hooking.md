@@ -23,7 +23,7 @@ A hook changes where execution goes.
 
 Every hooking technique you will ever see reduces to one of these.
 
-## Inline hooks: rewriting reality
+## Inline hooks:rewriting reality
 
 When a function is called, execution jumps to its first instruction.
 
@@ -56,4 +56,35 @@ This works because the CPU does not care who wrote the instructions.
 
 Kernel inline hooks are extremely fragile, one mistake equal panic.
 
-## Pointer hooks: lying politely 
+## Pointer hooks:lying politely 
+
+Many systems don't call functions directly, they call them through 
+tables of function pointers.
+
+### Examples:
+
+* syscall tables
+* file operation tables
+* network protocol handlers
+* virtual function tables (C++)
+
+### Instead of patching code, you replace a pointer:
+
+`sys_read -> my_sys_read`
+
+Now ever read goes through you, this is cleaner, safer, and easier to 
+revert. This is why defenders monitor pointer integrity.
+
+## Dispatch hooks:abusing indirection
+
+Sometimes the system itself decides what function to call based on 
+context.
+
+### Examples:
+
+* dynamic linker resolving symbols
+* kernel choosing a protocol handler
+* filesystem choosing operations
+
+If you intercept the decision point, you control behaviour without 
+touching code.

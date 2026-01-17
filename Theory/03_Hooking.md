@@ -92,3 +92,18 @@ touching code.
 This is how `LD_PRELOAD` works.
 
 
+
+## Comparison among basic types of Hooking techniques:
+
+```
+| Hook Type      | Level  | Difficulty  | Stealth | Stability  |
+| -------------- | ------ | ----------- | ------- | ---------- |
+| User-space API | User   | Easy        | Low     | High       |
+| Syscall table  | Kernel | Medium–High | Medium  | Medium     |
+| Inline hooking | Both   | High        | High    | Low–Medium |
+```
+
+#### Rootkits are just pointer redirection, control-flow hijacking, 
+#### and trust boundary abuse. Every hook is just "change where 
+#### execution goes"
+

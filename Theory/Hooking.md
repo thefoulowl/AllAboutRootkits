@@ -6,7 +6,7 @@ why do they even exists.
 
 Hook is basically is a control-flow redirection.
 
-Every program, at every levelis just:
+### Every program, at every levelis just:
 
 * Instructions
 * Addresses
@@ -15,8 +15,7 @@ Every program, at every levelis just:
 
 A hook changes where execution goes.
 
-There are only there fundamental ways to hook anything, and the 
-process is known as hooking.
+### There are only there fundamental ways to hook anything.
 
 1. You overwrite instructions
 2. You replace a pointer
@@ -28,7 +27,7 @@ Every hooking technique you will ever see reduces to one of these.
 
 When a function is called, execution jumps to its first instruction.
 
-An inline hook overwrites those first instructions with a jump:
+### An inline hook overwrites those first instructions with a jump:
 
 ```
 original_function:
@@ -49,7 +48,7 @@ then jump back to the original code.
 
 This works because the CPU does not care who wrote the instructions.
 
-Inline hooks are powerful and dangerous:
+### Inline hooks are powerful and dangerous:
 
 * You must preserve registers
 * You must respect calling conventions

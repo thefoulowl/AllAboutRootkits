@@ -63,14 +63,14 @@ It is only hiding from the observer who relies on the hooked APIs.
 ### Comparison: Userland vs Kernel Rootkits
 
 ```
-_________________________________________________________________
-| Feature  | Userland Rootkit (Ring 3) | Kernel Rootkit (Ring 0) |
-|__________|___________________________|_________________________|
-|          |			       |			 |
-|          |			       |			 |
-|  	   |			       |			 |
-|	   |			       |			 |
-|	   |			       |			 |
-|	   |			       |			 |
-|	   |			       |                         | 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Feature	                                            Userland Rootkit (Ring 3)	                   Kernel Rootkit (Ring 0)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hiding Strategy	                    Intercepts library calls (DLL/Shared Object hooking).	Modifies internal kernel structures (DKOM).
+Visibility	                    Hidden from top, ps, ls. Visible to kernel debuggers.	Hidden from the OS itself. The OS "forgets" it exists.
+Stability	                    High. If it crashes, only the hooked app dies.      	Low. If it crashes, you get a BSOD/Kernel Panic.
+Complexity	                    Relatively simple (LD_PRELOAD, IAT hooking).	        Highly complex (Requires driver signing bypasses).
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
+

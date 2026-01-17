@@ -1,9 +1,11 @@
-Core Idea
+# User-Space Function Hooking (Library/API Hooking)
+
+## Core Idea
 
 Instead of modifying the kernel, the attacker lies to programs by 
 intercepting library functions they call.
 
-Program don't talk to the kernel directly, they usually go through:
+### Program don't talk to the kernel directly, they usually go through:
 
 * libc
 * Win32 APIs (Windows)

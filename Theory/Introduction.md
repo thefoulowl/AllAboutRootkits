@@ -1,3 +1,5 @@
+# Introduction 
+
 A modern operating system is not a single program, it is a layered 
 contract system.
 
@@ -12,12 +14,12 @@ than it really is.
 Everything you see, files, directories, processes, sockets, 
 permissions, it is a representation, not reality.
 
-Rootkits exploit the gap between:
+### Rootkits exploit the gap between:
 
 * Reality (what actually exists)
 * Representation (what the OS reports)
 
-If you remember only one sentence, remember this that -
+### If you remember only one sentence, remember this that -
 
 A rootkit does not hide things.
 It controls the answers to the questions.

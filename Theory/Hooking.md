@@ -88,3 +88,7 @@ context.
 
 If you intercept the decision point, you control behaviour without 
 touching code.
+
+This is how `LD_PRELOAD` works.
+
+

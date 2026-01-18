@@ -73,3 +73,23 @@ hardware initializes, the rootkit initializes with it.
 stealthy technique. In newer Linux kernels (5.5+), attackers use eBPF 
 programs to hook kernel functions without ever loading a traditional 
 LKM, making traditional "lsmod" checks useless.
+
+
+## 3. The Detection Battle
+
+*Modern EDRs (Endpoint Detection and Response) and Windows 
+"PatchGuard" have made rootkits much harder to deploy*
+
+* **PatchGuard (KPP):** This is Windows feature that periodically 
+checks if critical kernel structure (like the SSDT) have been 
+modified. If it detects a change, it triggers a Blue Screen of Death 
+(BSOD) to prevent further compromise.
+
+*KPP stands for Kernel Patch Protection and also knows as PatchGuard*
+
+* **Driver Signing Enforcement (DSE):** Windows will not load a driver 
+unless it is digitally signed by a trusted authority. Red teamers 
+bypass this using "**Bring Your Own Vulnerable Driver**" (BYOVD) 
+attacks, loading an old, legitimate but vulnerable driver (like an old 
+Dell or Capcom driver) and then exploiting that driver to gain kernel 
+execution.

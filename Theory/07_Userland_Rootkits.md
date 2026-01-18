@@ -23,6 +23,8 @@ That is `LD_PRELOAD`.
 Userland rootkits do not hide from the system, they hide from the 
 observer.
 
+Another program not using your library will still see reality.
+
 ## The "Observer" vs. The "System"
 
 When we say a userland rootkit hides from the observer, we mean it 

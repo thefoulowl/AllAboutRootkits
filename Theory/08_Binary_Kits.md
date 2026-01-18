@@ -110,3 +110,21 @@ experts use tools like *Volatility* to dump the RAM and look for
 executing code.
 
 
+*A binary kit replaces trusted tools with modified ones.*
+
+#### For example:
+
+* `ls` hides files
+* `ps` hides processes
+* `netstat` hides sockets
+
+This works because humans trust tools, but the kernel still knows the 
+truth.
+
+#### That is why defenders:
+
+* compare outputs
+* verify hashes
+* cross-check with /proc
+
+Binary kits are simple, noisy, and historically important.

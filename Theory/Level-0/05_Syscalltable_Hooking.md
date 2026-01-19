@@ -15,7 +15,7 @@ understand **where it actually sits in the execution flow**.*
 
 ### When a user-space program makes a system call like:
 
-````C
+```C
 read(fd, buf, size);
 ```
 

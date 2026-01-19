@@ -98,13 +98,13 @@ You should think of syscall table hooking as - ***Hooking at the dispatch layer 
 Execution layer = inline hooking
 Dispatch layer = syscall table hooking
 
-### Instead of:
+#### Instead of:
 
 ```
 sys_open → real kernel function
 ```
 
-### It becomes:
+#### It becomes:
 
 ```
 sys_open → rootkit function → (optional) real kernel function

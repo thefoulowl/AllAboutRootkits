@@ -8,6 +8,37 @@ of function pointers in the kernel.
 Rootkits modify that table, it would be like, all roads to the kernel 
 would go through us.
 
+## Where the Syscall Table Fits in the System
+
+*Before understanding why syscall table hooking is powerful, we must 
+understand **where it actually sits in the execution flow**.*
+
+### When a user-space program makes a system call like:
+
+````C
+read(fd, buf, size);
+```
+
+It doesn't jump directly to a kernel function like `sys_read()`, 
+instead, the flow is:
+
+```
+User Program
+   ↓
+libc wrapper (read())
+   ↓
+syscall instruction (CPU trap)
+   ↓
+Kernel syscall entry point
+   ↓
+Syscall dispatcher
+   ↓
+syscall_table[__NR_read]
+   ↓
+sys_read() (or equivalent handler)
+
+```
+
 ### Instead of:
 
 ```

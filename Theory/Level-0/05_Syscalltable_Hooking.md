@@ -2,11 +2,8 @@
 
 ## Core idea 
 
-Every system call (read, open, kill, etc.) is dispatched via a table 
-of function pointers in the kernel.
-
-Rootkits modify that table, it would be like, all roads to the kernel 
-would go through us.
+Every system call (read, open, kill, etc.) is dispatched via a table of function pointers in the kernel.
+Rootkits modify that table, it would be like, all user-initiated kernel services go through this dispatch layer.
 
 ## Where the Syscall Table Fits in the System
 
@@ -36,7 +33,6 @@ Syscall dispatcher
 syscall_table[__NR_read]
    ↓
 sys_read() (or equivalent handler)
-
 ```
 
 ## What the syscall table really is

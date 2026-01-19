@@ -124,3 +124,4 @@ sys_open → rootkit function → (optional) real kernel function
 * Syscall table integrity validation
 * Kernel memory write-protection checks
 * Behaviour mismatches between syscall vs hardware traces
+

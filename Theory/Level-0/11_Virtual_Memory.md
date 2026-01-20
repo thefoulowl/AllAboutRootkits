@@ -53,3 +53,33 @@ Think of Page Tables as a multi-level phone book. On x86_64, this is usually a 4
 *Why this hierarchy? It saves RAM; If a process only uses 1MB of memory, the kernel only needs to create a few entries in the tables, rather than a massive flat map for the entire 64-bit address space*
 
 We'll discuss it further in our notes later on.
+
+### Virtual Memory 
+
+Virtual Memory is a memory management technique that provides an 'idealized' view of storage to a process. Every process on the system thinks it has a massive, contiguous, and private range of addresses, regardless of how much physical RAM is actually installed.
+
+**1. Isolation (The Sandbox):**
+
+In a modern OS, **Process A cannot see Process B's memory.** Both processes might think they are storing data at address `0x400000`, but the MMU maps them to completely different physical page frames. 
+
+* **Security Perspective:** This is the first line of defense. Without virtual memory, any program could read the memory of your password manager or the kernel itself just by guessing the right physical address.
+
+**2. The Address Space:**
+
+On a 64-bit system, the theoretical virtual address space is 2^64 bytes
+(though most CPUs currently limits to 48 or 57 bits).
+
+* **User Space:** Where your application code, heap, and stack live.
+* **Kernel Space:** The upper portion of the address space reserved for the OS.
+* **The 'Gap':** Most of this space is actually "unmapped", if a process tries to access an unmapped address, the MMU sees no entry in the Page Tables and triggers a **Segfault**.
+
+**3. Over-Commitment and Swapping:** 
+
+Virtual memory allows the system to pretend it has more memory than it actually does.
+
+* **Demand Paging:** The kernel only maps a virtual page to a physical frame when the process actually tries to use it.
+
+* **Swapping/Paging Out:** If physical RAM is full, the kernel can move a page frame to the disk (Swap space) and mark the Page Table entry as "not present". When the process tries to access it again, a **Page Fault** occurs, and the kernel quietly swaps it back into RAM.
+
+
+

@@ -64,3 +64,42 @@ Which internally follows:
 To hide a process, you don't kill or suspend it, you unlink its node, conceptually it is like `A ←→ B ←→ C ←→ D`, remove C, `A ←→ B ←→ D`
 
 C still exists, it still runs but it is simply unreachable from the traversal path. This is invisibility at the kernel level.
+
+## Hash Tables (How the Kernel Finds Things Fast)
+
+Linked lists are good for traversal, but slow for lookup, so the kernel also uses hash tables, these are used for:
+
+* PID lookup
+* Inode lookup
+* File Descriptor tables
+* Socket lookup
+* Credential caching
+
+Instead of walking a list of 100,000 processes, the kernel:
+
+* hashes the PID
+* jumps directly to a bucket
+* and finds the object in constant time
+
+### Why this matters for rootkits
+
+If you unlink a process from the task list but forget to:
+
+* remove it from PID hash table
+* remove it from scheduler queues
+
+Then the kernel still knows about it internally and inconsistencies appear, Advanced rootkits must **modify all structure references**, not just one list. This is why naive DKOM causes crashes or detection.
+
+## Trees (Ordering and Hierarchy)
+
+Some kernel subsystems use trees instead of lists
+
+### Red-Black Trees
+
+The kernel uses Red-Black trees for:
+
+* Virtual memory areas (VMAs)
+* Process Scheduling
+* File system caches
+
+These trees maintain ordering, balance, fast lookup. A memory region is not just stored arbitrarily. It is placed in a tree ordered by virtual addresses.

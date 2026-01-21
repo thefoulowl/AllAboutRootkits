@@ -149,3 +149,8 @@ Structure corruption is more dangerous because it does not immediately crash, it
 
 Rootkits operate in this zone intentionally, which is why kernel development is a dangerous area.
 
+## Why Modern Defenses Target Structures
+
+Defenders don't just look for modified code anymore, they look for broken list invariants, mismatched reference counts, orphaned structures and the objects present in memory but missing from lists.
+This is why structure integrity matters and the consistency even matters more than invisibility. A good rootkit isn't just hidden, it is structurally consistent.
+

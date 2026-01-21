@@ -103,3 +103,49 @@ The kernel uses Red-Black trees for:
 * File system caches
 
 These trees maintain ordering, balance, fast lookup. A memory region is not just stored arbitrarily. It is placed in a tree ordered by virtual addresses.
+
+### Why this matters
+
+Rootkits that inject memory, hide memory regions and manipulate VMAs must understand tree ordering, preserve balance and also avoid corrupting structure invariants.
+
+Breaking a tree does not hide things, it only crashes the kernel. Trees are less forgiving than the lists.
+
+## Reference Counting (Why Objects Don't Disappear)
+
+The kernel uses reference counting to decide when objects can be freed, every time a file is opened, a socket is used, or a process is referenced; Its reference count increases.
+Only when it drops to zero can the object be destroyed.
+
+Why rootkits care? because if you unlink a structure but leave the references alive, then memory leaks will happen, stale pointers will remain there and detection becomes easier.
+
+A good rootkit must maintain correct reference counts while hiding objects.
+
+## Function Pointer Tables (Where Redirection Occurs)
+
+Some kernel structures don't just store data, they store the behaviour via function pointers, examples are given below:
+
+* `file_operations`
+* `proto_ops`
+* `inode_operations`
+* `syscall`
+
+These structures decide which function runs when this event happens.
+Changing these does not modify code, it modifies which code is chosen and also this is stealthier than patching instructions.
+
+## The Kernel as a Graph
+
+Think of the kernel not as a code, but as a **graph**:
+
+* Nodes are structures
+* Edges are pointers
+* Paths are traversal logic
+
+A rootkit is a controlled graph mutation. Instead of destroying nodes, it removes edges, insert new edges, reroutes the traversal paths and this is why rootkits only *hide, redirect, deceive*, without destroying the underlying system.
+
+## Why Corrupting Structures worst than Bugs
+
+A crash happens when a code failes, a corruption happens when the system keeps running incorrectly.
+
+Structure corruption is more dangerous because it does not immediately crash, it poisons the logic silently and it creates undefined behaviour.
+
+Rootkits operate in this zone intentionally, which is why kernel development is a dangerous area.
+
